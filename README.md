@@ -35,19 +35,22 @@ From this window you can annotate the video and have a live ethogram representat
 
 ### Example
 
-Here's an example. 
+Here's an example showing minimal functions of the main app. 
 
 ![](img/example_movie.gif)
 
 ## Next updates
 
-Some updates will happen soon, this list contains .
+Some updates will happen soon, this list contains the next things to be updated in order.
 
 1. Allow for user to populate behavior categories at will on start-up.
 1. Add function `on_key_press` (allow hotkeys for scoring).
 1. Add ask before quit.
 1. Add colors/style to matplotlib.
 
+## Other functions
+
+This repository contains some functions used to capture an LED blink on video. Future versions may or may not contain this functionality and documentation will not be developed for these.
 
 ## Contribute
 
