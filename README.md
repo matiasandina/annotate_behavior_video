@@ -1,2 +1,54 @@
 # annotate_behavior_video
-This repository contains a very simple video annotator for animal behavior
+This repository contains a very simple video annotator for animal behavior.
+
+
+## Install
+
+This software was built using python 3.4. You can get this software from the terminal using.
+
+```
+git clone https://github.com/matiasandina/annotate_behavior_video.git
+
+```
+
+To install dependencies.
+
+```
+pip3 install -r requirements.txt
+```
+
+## Usage
+
+The main function is `annotator.py`, which uses 2 windows. The main window will contain most buttons used to control the video. The second window provides visual feedback for annotation.
+
+### Main window
+
+From this window you control the reproduction, type annotation (aka, type of behavior) and saving of data.
+
+![main window](img/main_window.png)
+
+### Ethogram window
+
+From this window you can annotate the video and have a live ethogram representation of the annotations.
+
+![ethogram](img/video_window.png)
+
+### Example
+
+Here's an example. 
+
+![](img/example_movie.gif)
+
+## Next updates
+
+Some updates will happen soon, this list contains .
+
+1. Allow for user to populate behavior categories at will on start-up.
+1. Add function `on_key_press` (allow hotkeys for scoring).
+1. Add ask before quit.
+1. Add colors/style to matplotlib.
+
+
+## Contribute
+
+This is a preliminary release. Please file issues to make this software work better.
