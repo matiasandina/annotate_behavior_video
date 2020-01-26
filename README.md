@@ -47,6 +47,7 @@ Some updates will happen soon, this list contains the next things to be updated 
 1. Add function `on_key_press` (allow hotkeys for scoring).
 1. Add ask before quit.
 1. Add colors/style to matplotlib.
+1. Make GUI look pretty
 
 ## Other functions
 
