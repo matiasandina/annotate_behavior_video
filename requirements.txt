@@ -51,7 +51,7 @@ np-utils==0.5.10.0
 numpy==1.15.4
 oauth2==1.9.0.post1
 olefile==0.45.1
-opencv-python==4.0.0.21
+opencv-python==4.1.1.26
 pandas==0.23.4
 pathtools==0.1.2
 patsy==0.5.1
