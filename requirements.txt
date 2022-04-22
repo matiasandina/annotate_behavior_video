@@ -64,7 +64,7 @@ Pygments==2.2.0
 pygobject==3.26.1
 pyOpenSSL==17.5.0
 pyparsing==2.3.0
-PyPDF2==1.26.0
+PyPDF2==1.27.5
 pypdfocr==0.9.1
 python-dateutil==2.7.5
 pytz==2018.9
