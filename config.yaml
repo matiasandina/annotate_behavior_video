@@ -1,0 +1,7 @@
+behaviors:
+- not-specific
+- sleep
+- micro-arousal
+- quiet-awake
+- moving-awake
+- eating-awake
