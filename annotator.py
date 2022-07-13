@@ -12,6 +12,8 @@ from matplotlib.backends.backend_tkagg import (
 # Implement the default Matplotlib key bindings.
 from matplotlib.backend_bases import key_press_handler
 from matplotlib.figure import Figure
+import yaml
+import os
 
 # TODO: add colors/style to matplotlib
 # TODO: Allow for user to populate behavior categories at will
@@ -98,9 +100,13 @@ class videoGUI:
 
         # Region radiobuttons
 
-        self.b_dict = {'not-specific': 0, 'movement': 0, 'social': 0, 'non-social': 0, 'grooming': 0, 'rearing': 0}
+        
 
-        for key in self.b_dict:
+        with open("config.yaml", "r") as f:
+            self.config = yaml.load(f, Loader=yaml.FullLoader)
+
+        self.b_dict = {}
+        for key in self.config["behaviors"]:
             self.b_dict[key] = Radiobutton(annotation_frame, text=key, bd=4, width=12, command=self.print_var)
             self.b_dict[key].config(indicatoron=0, variable=self.var, value=key)
             self.b_dict[key].pack(side='left')
@@ -177,9 +183,9 @@ class videoGUI:
 
         # Set a flag to mark you are annotating
         self.annotate_flag = "on"
-
+        print(int(self.current_frame))
         # Set values on data
-        self.data.ix[int(self.current_frame), 'behavior'] = self.current_behavior
+        self.data.at[int(self.current_frame),"behavior"] = self.current_behavior
 
         # print(self.data.iloc[self.current_frame-1:self.current_frame+2])
         print("Annotating..." + self.current_behavior)
