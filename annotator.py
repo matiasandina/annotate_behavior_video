@@ -32,6 +32,7 @@ class videoGUI:
         # region window creation
         self.window = window
         self.window.title(window_title)
+        self.window.protocol("WM_DELETE_WINDOW", self.on_closing)
 
         top_frame = Frame(self.window)
         top_frame.pack(side=TOP, pady=5)
@@ -272,13 +273,14 @@ class videoGUI:
     def disable_start_button(self):
         self.btn_play.configure(state=DISABLED)
 
+    def on_closing(self):
+        if messagebox.askokcancel("Quit", "Do you want to quit?\nALL UNSAVED DATA WILL BE LOST"):
+            self.__del__()
+
     # Release the video source when the object is destroyed
     def __del__(self):
-
         self.top.quit()
 
-        if self.cap.isOpened():
-            self.cap.release()
 
     # This will prevent the user from closing the top window (which stalls the program)
     def disable_event(self):
