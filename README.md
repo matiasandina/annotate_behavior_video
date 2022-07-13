@@ -56,8 +56,9 @@ Here's an example showing minimal functions of the main app.
 Some updates will happen soon, this list contains the next things to be updated in order.
 
 1. Allow for user to populate behavior categories at will on start-up.
+	* Use `config.yaml` for this!
 1. Add function `on_key_press` (allow hotkeys for scoring).
-1. Add ask before quit.
+~~1. Add ask before quit.~~
 1. Add colors/style to matplotlib.
 1. Make GUI look pretty
 
