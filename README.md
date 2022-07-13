@@ -17,6 +17,18 @@ To install dependencies.
 pip3 install -r requirements.txt
 ```
 
+You are advised to do this in a virtual environment. For example:
+
+```
+git clone https://github.com/matiasandina/annotate_behavior_video.git
+cd annotate_behavior_video
+python3 -m venv .annotator 
+source .annotator/bin/activate
+# some modules need numpy for install and you won't have it on a virtual environment
+pip3 install numpy==1.22.0
+pip3 install -r requirements.txt 
+```
+
 ## Usage
 
 The main function is `annotator.py`, which uses 2 windows. The main window will contain most buttons used to control the video. The second window provides visual feedback for annotation.
