@@ -143,8 +143,8 @@ class videoGUI:
     def open_file(self):
 
         self.pause = False
-
-        self.filename = filedialog.askopenfilename(title="Select file")
+        home = os.path.expanduser('~')
+        self.filename = filedialog.askopenfilename(initialdir = home, title="Select file")
         print("Trying to read...")
         print(self.filename)
 
