@@ -33,6 +33,7 @@ class videoGUI:
         self.window = window
         self.window.title(window_title)
         self.window.protocol("WM_DELETE_WINDOW", self.on_closing)
+        self.home = os.path.expanduser('~')
 
         top_frame = Frame(self.window)
         top_frame.pack(side=TOP, pady=5)
@@ -71,7 +72,9 @@ class videoGUI:
         self.frame_slider = Scale(middle_frame, from_=0, to=500,
                                           orient=HORIZONTAL,
                                           sliderlength=15, length=800,
-                                  tickinterval=600, command=self.get_slider_values)
+                                  # roughly 30 fps * 60 sec * 30 min
+                                  tickinterval=30*60*30, 
+                                  command=self.get_slider_values)
         self.frame_slider.grid(row=0, column=0)
 
 
@@ -83,16 +86,19 @@ class videoGUI:
         self.btn_select=Button(bottom_frame, text="Select video file", width=15, command=self.open_file)
         self.btn_select.grid(row=1, column=0)
 
+        self.btn_prev=Button(bottom_frame, text="Load Previous Data", width=15, command=self.load_csv)
+        self.btn_prev.grid(row=1, column=1)
+
         # Play Button
         self.btn_play=Button(bottom_frame, text="Start", width=15, command=self.play_video)
-        self.btn_play.grid(row=1, column=1)
+        self.btn_play.grid(row=1, column=2)
 
         # Pause Button
         self.btn_pause=Button(bottom_frame, text="Play/Pause", width=15, command=self.play_pause_video)
-        self.btn_pause.grid(row=1, column=2)
+        self.btn_pause.grid(row=1, column=3)
 
         self.btn_save=Button(bottom_frame, text="Save", width=15, command=self.save_data)
-        self.btn_save.grid(row=1, column=3)
+        self.btn_save.grid(row=1, column=4)
 
         # Create Var for annotation
 
@@ -150,8 +156,7 @@ class videoGUI:
     def open_file(self):
 
         self.pause = False
-        home = os.path.expanduser('~')
-        self.filename = filedialog.askopenfilename(initialdir = home, title="Select file")
+        self.filename = filedialog.askopenfilename(initialdir = self.home, title="Select file")
         print("Trying to read...")
         print(self.filename)
 
@@ -303,19 +308,26 @@ class videoGUI:
         x = self.data["frameID"][x_min:x_max]
         y = self.data["behavior"][x_min:x_max]
 
+
         # make the new plot
         self.ax.plot(x, y, '|', markersize=20)
+        self.ax.plot(self.current_frame, y[self.current_frame], '|', markersize=20, color='red')
         self.ax = self.top_canvas.figure.axes[0]
         self.ax.set_xlim(x_min, x_max)
         # ax.set_ylim(y.min(), y.max())
         self.top_canvas.draw()
 
     def save_data(self):
-
         filename = filedialog.asksaveasfilename(title="Type filename to save",
                                                 filetypes = (("csv files","*.csv"),("all files","*.*")))
         self.data.to_csv(filename, index=False)
 
+    def load_csv(self):
+        filename = filedialog.askopenfilename(initialdir=self.home, 
+            title="Select Previous Annotated Data", 
+            filetypes=(("csv files", "*.csv"),("all files","*.*")))
+        #  keep_default_na=False helps to read NA as string
+        self.data = pd.read_csv(filename,  keep_default_na=False)
 
 
 ##### End Class #####
