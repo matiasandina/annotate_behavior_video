@@ -77,6 +77,9 @@ class videoGUI:
                                   command=self.get_slider_values)
         self.frame_slider.grid(row=0, column=0)
 
+        self.back_button = Button(middle_frame, text = "Back 300 frames", width=14, command=self.back_frames)
+        self.back_button.grid(row=1, column =0)
+
 
         # Define start frame at 0
         self.current_frame = 0
@@ -273,6 +276,10 @@ class videoGUI:
         else:
             self.pause = False
             self.play_video()
+
+    def back_frames(self):
+        self.play_pause_video()
+        self.frame_slider.set(self.current_frame - 300)
 
     # We need to disable start so there are not a lot of instances
     def disable_start_button(self):
