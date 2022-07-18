@@ -209,14 +209,11 @@ class videoGUI:
         print("Changing to " + self.var.get())
 
     def get_frame(self):   # get only one frame
-
         try:
-
             if self.cap.isOpened():
                 ret, frame = self.cap.read(self.current_frame)
                 #self.current_frame = self.cap.get(cv2.CAP_PROP_POS_FRAMES)
                 return (ret, cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
-
         except:
             messagebox.showerror(title='Video file not found', message='Please select a video file.')
 
@@ -232,6 +229,11 @@ class videoGUI:
             self.current_frame = self.slider_pos
             # set the camera for that frame >>> THIS IS THE IMPORTANT TELL THE CAMERA WHAT"S THE NEXT FRAME!
             self.cap.set(cv2.CAP_PROP_POS_FRAMES, self.current_frame - 1)
+
+        # stop if needed
+        if self.current_frame > self.total_frames:
+            self.pause = True
+            messagebox.showerror(title='End of video', message='End of video!')
 
         # Get a frame from the video source, and go to the next frame automatically
         ret, frame = self.get_frame()
@@ -257,11 +259,6 @@ class videoGUI:
         if not self.pause:
             # increase the frame number
             self.current_frame = self.current_frame + 1
-
-            # stop
-            if self.current_frame > self.total_frames:
-                self.pause = True
-                messagebox.showerror(title='End of video', message='End of video!')
 
             # update the slider
             self.frame_slider.set(self.current_frame)
