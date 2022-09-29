@@ -110,8 +110,6 @@ class videoGUI:
 
         # Region radiobuttons
 
-        
-
         with open("config.yaml", "r") as f:
             self.config = yaml.load(f, Loader=yaml.FullLoader)
 
@@ -150,11 +148,27 @@ class videoGUI:
         self.top_canvas.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
 
+        # HotKey Bindings
+        self.window.bind("<space>", self.play_pause_video)
+        self.key_options = ["a","s", "d", "f", "g", "h", "j", "k", "l"]
+        if len(self.config["behaviors"]) > len(self.key_options):
+            print(f"More behaviors {len(self.config['behaviors'])} than key_options")
+        self.key_options = self.key_options[:len(self.config["behaviors"])]
+        for i, hotkey in enumerate(self.key_options):
+            behavior_i = self.config["behaviors"][i]
+            self.window.bind(hotkey, self.switch_radiobutton)
 
 
         self.delay = 15   # ms
 
         self.window.mainloop()
+
+    def switch_radiobutton(self, event):
+        for i, hotkey in enumerate(self.key_options):
+            if event.char == hotkey:
+                behavior_i = self.config["behaviors"][i]
+                self.var.set(behavior_i)
+                break
 
     def open_file(self):
 
@@ -266,7 +280,7 @@ class videoGUI:
 
 
     # This function serves as a toggle for play/pause
-    def play_pause_video(self):
+    def play_pause_video(self, event=None):
         if self.pause == False:
             self.pause = True
             self.play_video()
