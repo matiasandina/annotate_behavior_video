@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter.font import Font
 from tkinter import messagebox
 from tkinter import filedialog
 import PIL.Image, PIL.ImageTk
@@ -124,10 +125,15 @@ class videoGUI:
         # TOP WINDOW
 
         # Button that lets the user take annotate
-        self.btn_annotate = Button(self.top, text="Annotate", width=50, command=self.annotate)
+        # we are going to disable it when it's being "active", it works more like a toggle
+        # so instead of activeforeground and activebackground we use disabledforeground
+        self.btn_annotate = Button(self.top, text="Annotate", width=50, command=self.annotate, 
+            disabledforeground='#428249', activebackground = "#93B365",
+            font = Font(size = 12))
         self.btn_annotate.pack(anchor=CENTER, expand=True)
 
-        self.btn_stop_annotate = Button(self.top, text="Stop Annotate", width=50, command=self.stop_annotate)
+        self.btn_stop_annotate = Button(self.top, text="Stop Annotate", width=50, command=self.stop_annotate,
+            font = Font(size = 12))
         self.btn_stop_annotate.pack(anchor=CENTER, expand=True)
 
         self.fig = Figure(figsize=(5, 4), dpi=100)
