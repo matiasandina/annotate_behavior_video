@@ -4,7 +4,7 @@ This repository contains a very simple video annotator for animal behavior.
 
 ## Install
 
-This software was built using python 3.4, but it has been tested in many other python distros so you should interpret this as 3.4+. You can get this software from the terminal using.
+This software was built using python 3.4, but it has been tested in many other python distros so you should interpret this as 3.4+ (up to 3.11). You can get this software from the terminal using.
 
 ```
 git clone https://github.com/matiasandina/annotate_behavior_video.git
@@ -29,7 +29,7 @@ pip3 install numpy==1.22.0
 pip3 install -r requirements.txt 
 ```
 
-In windows activating:
+In windows, activating `venv` works like:
 
 ```
 python3 -m venv .annotator 
@@ -37,7 +37,13 @@ python3 -m venv .annotator
 pip3 install -r requirements.txt
 ```
 
-If prefer conda, you can set up your virtual environment using it.
+If prefer conda, you can set up your virtual environment using it. 
+
+```
+conda create --name .annotator python
+conda activate .annotator
+pip3 install -r requirements.txt
+```
 
 ## Usage
 
