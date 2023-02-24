@@ -37,7 +37,7 @@ python3 -m venv .annotator
 pip3 install -r requirements.txt
 ```
 
-If prefer conda, you can set up your virtual environment using it. 
+If you prefer conda, you can set up your virtual environment using it. 
 
 ```
 conda create --name .annotator python
@@ -67,13 +67,41 @@ Here's an example showing minimal functions of the main app.
 
 ![](img/example_movie.gif)
 
+### Self-Populated Behavior labels
+
+By using a `config.yaml`, you can label different behaviors. For example, here's the file as apears in the repo
+
+```
+behaviors:
+- not-specific
+- sleep
+- micro-arousal
+- quiet-awake
+- moving-awake
+- eating-awake
+```
+
+Which will be read into the annotator and produce:
+
+
+![](img/example_self_populated_buttons.png)
+
+### HOTKEYS 
+
+Hot keys have been added with the following bindings. 
+
+```
+self.key_options = ["a","s", "d", "f", "g", "h", "j", "k", "l"]
+```
+
+These will match the order of the behaviors on your config. Thus, following the example, "sleep" will be labeled when pressing "s".
+
 ## Next updates
 
 Some updates will happen soon, this list contains the next things to be updated in order.
 
-1. Allow for user to populate behavior categories at will on start-up.
-	* Use `config.yaml` for this!
-1. Add function `on_key_press` (allow hotkeys for scoring).
+~~1. Allow for user to populate behavior categories at will on start-up.~~
+~~1. Add function `on_key_press` (allow hotkeys for scoring).~~
 ~~1. Add ask before quit.~~
 1. Add colors/style to matplotlib.
 1. Make GUI look pretty
